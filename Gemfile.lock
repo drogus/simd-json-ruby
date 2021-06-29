@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simd-json (0.2.0)
+    simd-json (0.3.0)
       rutie (~> 0.0.4)
       thermite (~> 0)
 
