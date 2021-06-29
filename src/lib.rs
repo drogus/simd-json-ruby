@@ -15,15 +15,6 @@ use serde_json::Value;
 
 class!(SimdJsonRust);
 
-fn convert_to_hash(json: &Value) -> Option<AnyObject> {
-    match json.clone() {
-        Value::Object(object) => { Some(value_to_object(json)) },
-        _ => None,
-    }
-}
-
-// {"foo": String("bar")}
-
 fn value_to_object(json: &Value) -> AnyObject {
     match json {
         Value::Object(map) => {
@@ -62,7 +53,6 @@ fn value_to_object(json: &Value) -> AnyObject {
             }
         },
         _ => RString::new("new").into(),
-  
     }
 }
 
@@ -78,8 +68,7 @@ methods!(
         let mut b = ruby_string.to_bytes_unchecked().to_vec();
         let v: Value = simd_json::serde::from_slice(&mut b).unwrap();
         let mut hash = Hash::new();
-        let o = convert_to_hash(&v).unwrap();
-        o
+        convert_to_hash(&v)
     }
 );
 
