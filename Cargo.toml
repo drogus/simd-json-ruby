@@ -10,6 +10,9 @@ edition = "2018"
 crate-type = ["cdylib"]
 name = "simd_json"
 
+[build]
+rustflags = ["-C", "target-cpu=native"]
+
 [dependencies]
 rutie = "0.8.2"
 simd-json = "0.4.6"

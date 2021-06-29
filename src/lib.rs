@@ -49,6 +49,7 @@ fn value_to_object(json: &Value) -> AnyObject {
                 }
             }
         },
+        Value::Bool(b) => rutie::Boolean::new(*b).into(),
     }
 }
 
