@@ -1,11 +1,8 @@
-//#[cfg(not(target_env = "msvc"))]
-//use jemallocator::Jemalloc;
-//
-//#[cfg(not(target_env = "msvc"))]
-//#[global_allocator]
-//static GLOBAL: Jemalloc = Jemalloc;
+use mimalloc::MiMalloc;
 
-#[macro_use]
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;#[macro_use]
+
 extern crate rutie;
 
 use rutie::{Class, Object, RString, VM, Hash, NilClass, Fixnum, Float, Array, AnyObject};
@@ -68,7 +65,7 @@ methods!(
         let mut b = ruby_string.to_bytes_unchecked().to_vec();
         let v: Value = simd_json::serde::from_slice(&mut b).unwrap();
         let mut hash = Hash::new();
-        convert_to_hash(&v)
+        value_to_object(&v)
     }
 );
 
