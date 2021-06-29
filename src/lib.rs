@@ -49,7 +49,6 @@ fn value_to_object(json: &Value) -> AnyObject {
                 }
             }
         },
-        _ => RString::new("new").into(),
     }
 }
 
