@@ -4,7 +4,8 @@ require_relative "json/version"
 require 'rutie'
 
 module RutieRubyExample
-  Rutie.new('simd_json', lib_path: '../../target/release').init 'Init_simd_json', __dir__
+  target = ENV['CARGO_PROFILE'] || 'release'
+  Rutie.new('simd_json', lib_path: "../../target/#{target}").init 'Init_simd_json', __dir__
 end
 
 module Simd
